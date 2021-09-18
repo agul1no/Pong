@@ -1,0 +1,44 @@
+import java.awt.*;
+
+public class Ball extends Rectangle{
+    double x, y;
+    int width, height;
+    double xIDirection = -2;
+    double yIDirection = -1;
+    double xVelocity;
+    double yVelocity;
+    double initialSpeed = 3;
+
+    Ball(int x, int y, int width, int height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        setXDirection(xIDirection*initialSpeed);
+        setYDirection(yIDirection+initialSpeed);
+
+    }
+
+    public void setXDirection(double xIDirection){
+        xVelocity = xIDirection;
+        System.out.println(xVelocity + " xVelocity in setXDirection");
+    }
+
+    public void setYDirection(double yIDirection){
+        yVelocity = yIDirection;
+    }
+
+    public void move(){
+
+        x = (x + xVelocity);
+        y = (y + yVelocity);
+        //System.out.println(x + " x Postion");
+        //System.out.println(y + " y Postion");
+
+    }
+    public void draw(Graphics g){
+        g.setColor(Color.WHITE);
+        g.fillOval((int)x,(int)y,width,height);
+    }
+
+}
