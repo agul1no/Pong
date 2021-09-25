@@ -1,16 +1,21 @@
 import java.awt.*;
+import java.util.Timer;
 import java.util.concurrent.CompletionService;
 
 public class Score extends Rectangle{
 
-    int player1;
-    int player2;
+    public static int player1 = 0;
+    public static int player2 = 0;
     static int width;
     static int height;
 
     Score(int gameWidth, int gameHeight){
         Score.width = width;
         Score.height = height;
+    }
+    public int startingTheScore(int player2){
+        player2 = 0;
+        return player2;
     }
     public void draw(Graphics g){
         g.setColor(Color.WHITE);
@@ -25,11 +30,14 @@ public class Score extends Rectangle{
             g.setColor(Color.WHITE);
             g.setFont(new Font("Consolas", Font.PLAIN,70));
             g.drawString("Player 1 won!", 160,250);
+            GamePanelTwoPlayers.end = true;
+            //TODO Wenn das Spiel vorbei ist, fehlt der Button, um wieder zum Main Menu zurückzukommen
         }
         if(player2 >= 11 && player2-player1 > 1){
             g.setColor(Color.WHITE);
             g.setFont(new Font("Consolas", Font.PLAIN,70));
             g.drawString("Player 2 won!", 160,250);
+            GamePanelTwoPlayers.end = true;
         }
     }
 }

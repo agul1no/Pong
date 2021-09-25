@@ -7,7 +7,7 @@ public class TwoPlayersWindow extends JFrame {    //we can treat our GameFrame a
     JFrame frame = new JFrame();
 
     TwoPlayersWindow(){
-        panel = new GamePanelTwoPlayers();   //Instanciating the panel in the constructor
+        panel = new GamePanelTwoPlayers();   //Instantiating the panel in the constructor
         frame.add(panel);           // adding the game panel "panel" to our Frame
         frame.setSize(Constans.SCREEN_WIDTH,Constans.SCREEN_HEIGHT);
         frame.setLocationRelativeTo(null);

@@ -1,11 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Credits extends JFrame {
+public class Credits extends JFrame implements ActionListener {
 
     JFrame frame = new JFrame();
     JTextField textField = new JTextField();
     JTextArea textArea = new JTextArea();
+    JButton button1 = new JButton("Back to main menu");
 
     Credits(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,8 +47,23 @@ public class Credits extends JFrame {
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
 
+        button1.setBounds(580,480,150,30);
+        button1.setFocusable(false);
+
+        frame.add(button1);
         frame.add(textArea);
         frame.add(textField);
         frame.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()== button1){
+            //TODO Credit Frame wird nicht ausgeblenden und MainMenu mainFrame wird nicht angezeigt.
+            frame.dispose();
+            MainMenu.mainFrame.setVisible(true);
+            frame.setVisible(false);
+        }
     }
 }

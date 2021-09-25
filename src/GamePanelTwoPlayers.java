@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We can treat our GamePanel as a JPanel
@@ -13,6 +14,8 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
     Paddle paddle2;
     Ball ball;
     Score score;
+    public static boolean condition = false;
+    public static boolean end = false;
 
     GamePanelTwoPlayers(){              // when we construct our game panel we want to create new paddles
         newPaddles();         // create new ball
@@ -24,10 +27,11 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
 
         gameThread = new Thread(this);  // this because we are implementing the runnable interface
         gameThread.start();
+
     }
 
     public void newBall(){
-        ball = new Ball( (Constans.SCREEN_HEIGHT/2 - Constans.BALL_DIAMETER/2),Constans.SCREEN_HEIGHT/2 - Constans.BALL_DIAMETER/2, Constans.BALL_DIAMETER, Constans.BALL_DIAMETER);
+        ball = new Ball( (Constans.SCREEN_WIDTH/2 - Constans.BALL_DIAMETER/2),Constans.SCREEN_HEIGHT/2 - Constans.BALL_DIAMETER/2, Constans.BALL_DIAMETER, Constans.BALL_DIAMETER);
 
     }
     public void newPaddles(){
@@ -47,6 +51,11 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
         ball.draw(g);
         score.draw(g);
 
+        if(!condition) {
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Consolas", Font.PLAIN, 48));
+            g.drawString("Press the Space bar to start", 50, 210);
+        }
     }
     public void move(){
 
@@ -83,8 +92,8 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
         Random random = new Random();
         int rand = random.nextInt(6);
         if (ball.xVelocity < 0){
-            if(ball.x < paddle1.x+Constans.PADDLE_WIDTH) {  //we extended the ball class to a rectangle so now the class has the methods of the rectangle class (inheritance)
-                if (ball.y + Constans.BALL_DIAMETER/2 > paddle1.y && ball.y < paddle1.y + Constans.PADDLE_HEIGHT) {
+            if(ball.x < paddle1.x + Constans.PADDLE_WIDTH) {  //we extended the ball class to a rectangle so now the class has the methods of the rectangle class (inheritance)
+                if (ball.y + 20 > paddle1.y && ball.y < paddle1.y + Constans.PADDLE_HEIGHT) {
                     //ball.xVelocity = -ball.xVelocity;
                     double theta = calculateNewVelocityAngle();
                     double newVx = Math.abs((Math.cos(theta)) * -ball.xVelocity);
@@ -103,7 +112,7 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
             }
         } else if(ball.xVelocity > 0) {
             if (ball.x + Constans.BALL_DIAMETER > paddle2.x){
-                if (ball.y > paddle2.y && ball.y < paddle2.y + Constans.PADDLE_HEIGHT) {
+                if (ball.y + 20 > paddle2.y && ball.y < paddle2.y + Constans.PADDLE_HEIGHT) {
                     //ball.xVelocity = -ball.xVelocity;
                     double theta = calculateNewVelocityAngle2();
                     double newVx = Math.abs((Math.cos(theta)) * -ball.xVelocity);
@@ -132,14 +141,14 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
         if(paddle2.y >= Constans.SCREEN_HEIGHT-Constans.PADDLE_HEIGHT){
             paddle2.y = Constans.SCREEN_HEIGHT-Constans.PADDLE_HEIGHT;
         }
-        //gibe a player 1 point and creates new paddles and ball
-        if(ball.x <= 0){
+        //it gives player 1 point and creates new paddles and ball
+        if(ball.x <= 0 && condition){
             score.player2++;
             newPaddles();
             newBall();
             System.out.println("Player 2: "+ score.player2);
         }
-        if(ball.x > Constans.SCREEN_WIDTH - Constans.BALL_DIAMETER){
+        if(ball.x > Constans.SCREEN_WIDTH - Constans.BALL_DIAMETER && condition){
             score.player1++;
             newPaddles();
             newBall();
@@ -156,15 +165,23 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            if(delta >= 1){
+            System.out.println(condition);
+            System.out.println(Score.player1);
+            System.out.println(Score.player2);
+            score.startingTheScore(Score.player2);
+            //TODO Score zählt mit obwohl das Spiel Loop nicht angefangen hat
+            if(delta >= 1 && condition && !end){
                 move();
                 checkCollision();
                 repaint();
                 delta--;
-                //System.out.println("TEST");
+            }else{
+
             }
         }
     }
+
+
     public class AL extends KeyAdapter{                     // inner Class Action Listener
         public void keyPressed(KeyEvent e) {
             paddle1.keyPressed(e);                      // object.function then we determinate what happens when we call
@@ -173,6 +190,7 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
         public void keyReleased(KeyEvent e) {
             paddle1.keyReleased(e);
             paddle2.keyReleased(e);
+            ball.keyReleased(e);
         }
 
     }

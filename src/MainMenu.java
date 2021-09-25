@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 public class MainMenu implements ActionListener {
 
-    JFrame mainFrame = new JFrame();
+    public static JFrame mainFrame = new JFrame();
     JTextField pongTitel = new JTextField();
 
-    JButton buttom1 = new JButton("1 Player VS Computer");
-    JButton buttom2 = new JButton("2 Players");
-    JButton buttom3 = new JButton("Credits");
-    JButton buttom4 = new JButton("Quit");
+    JButton button1 = new JButton("1 Player VS Computer");
+    JButton button2 = new JButton("2 Players");
+    JButton button3 = new JButton("Credits");
+    JButton button4 = new JButton("Quit");
 
     MainMenu(){
 
@@ -32,24 +32,24 @@ public class MainMenu implements ActionListener {
         pongTitel.setHorizontalAlignment(JTextField.CENTER);
         pongTitel.setEditable(false);
 
-        buttom1.setBounds(300,230,200,50);
-        buttom1.setFocusable(false);
-        buttom1.addActionListener(this);
-        buttom2.setBounds(300,300,200,50);
-        buttom2.setFocusable(false);
-        buttom2.addActionListener(this);
-        buttom3.setBounds(300,370,200,50);
-        buttom3.setFocusable(false);
-        buttom3.addActionListener(this);
-        buttom4.setBounds(300,440,200,50);
-        buttom4.setFocusable(false);
-        buttom4.addActionListener(this);
+        button1.setBounds(300,230,200,50);
+        button1.setFocusable(false);
+        button1.addActionListener(this);
+        button2.setBounds(300,300,200,50);
+        button2.setFocusable(false);
+        button2.addActionListener(this);
+        button3.setBounds(300,370,200,50);
+        button3.setFocusable(false);
+        button3.addActionListener(this);
+        button4.setBounds(300,440,200,50);
+        button4.setFocusable(false);
+        button4.addActionListener(this);
 
         mainFrame.add(pongTitel);
-        mainFrame.add(buttom1);
-        mainFrame.add(buttom2);
-        mainFrame.add(buttom3);
-        mainFrame.add(buttom4);
+        mainFrame.add(button1);
+        mainFrame.add(button2);
+        mainFrame.add(button3);
+        mainFrame.add(button4);
 
 
         mainFrame.setVisible(true);
@@ -59,20 +59,20 @@ public class MainMenu implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==buttom1){
+        if(e.getSource()== button1){
             mainFrame.dispose();
             OnePlayerWindow frame = new OnePlayerWindow();
         }
 
-        if(e.getSource()==buttom2){
+        if(e.getSource()== button2){
             mainFrame.dispose();
             TwoPlayersWindow frame = new TwoPlayersWindow();
         }
-        if(e.getSource()==buttom3){
-            mainFrame.dispose();
+        if(e.getSource()== button3){
+            mainFrame.setVisible(false);
             Credits frame = new Credits();
         }
-        if(e.getSource()==buttom4){
+        if(e.getSource()== button4){
             mainFrame.dispose();
         }
 
