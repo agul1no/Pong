@@ -8,8 +8,8 @@ import javax.swing.*;
 public class Ball extends Rectangle{
     double x, y;
     int width, height;
-    double xIDirection = -2;
-    double yIDirection = -1;
+    double xIDirection = -1;
+    double yIDirection = 0;
     double xVelocity;
     double yVelocity;
     double initialSpeed = 3;
@@ -20,8 +20,9 @@ public class Ball extends Rectangle{
         this.y = y;
         this.width = width;
         this.height = height;
-        setXDirection(xIDirection*initialSpeed);
-        setYDirection(yIDirection+initialSpeed);
+        setXDirection(xIDirection * initialSpeed);
+        setYDirection(yIDirection * initialSpeed);
+
     }
 
     public void keyReleased(KeyEvent e){

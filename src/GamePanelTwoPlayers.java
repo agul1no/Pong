@@ -122,6 +122,10 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
                     ball.xVelocity = newVx * -Constans.BALL_VELOCITY;
                     if(ball.xVelocity < -15)
                         ball.xVelocity = -15;
+                    if(rand >=3){
+                        rand = 3;
+                    }else
+                    rand = -3;
                     ball.yVelocity = newVy-rand;
 
                 }
