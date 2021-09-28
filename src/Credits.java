@@ -28,17 +28,17 @@ public class Credits extends JFrame implements ActionListener {
         textField.setHorizontalAlignment(JTextField.CENTER);
         textField.setEditable(false);
 
-        textArea.setText("      The Pong Game was originally developed by Allan Alcorn and released in 1972 by Atari Corporations. " +
-                "Soon, Pong became a huge success and became the first commercially successful game. Today, the Pong Game is " +
+        textArea.setText("      The Pong Game was originally developed by Allan Alcorn and  released  in  1972  by  Atari  Corporations. " +
+                "Soon,  Pong became a huge success and became the first commercially successful game. Today, the Pong Game is " +
                 "considered to be the game which started the video games industry, as it proved that the video games market " +
                 "can produce significant revenues. 1975 Atari released a home edition of Pong which sold 150,000 units." +
                 "                         " +
-                "                                                                                                " +
-                "       This version of Pong was developed in 2021 by Agu as his first ''big'' programing project." +
+                "                                                                          " +
+                " This version of Pong was developed in 2021 by Agu as his first ''big'' programing project." +
                 "                                                                    " +
                 "                                                                        " +
-                "                                                       So have fun and good luck! ;)");
-        textArea.setBounds(80,170,600,400);
+                "                                            So have fun and good luck! ;)");
+        textArea.setBounds(100,170,580,400);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setBackground(Color.BLACK);
@@ -49,6 +49,7 @@ public class Credits extends JFrame implements ActionListener {
 
         button1.setBounds(580,480,150,30);
         button1.setFocusable(false);
+        button1.addActionListener(this);
 
         frame.add(button1);
         frame.add(textArea);
@@ -61,9 +62,13 @@ public class Credits extends JFrame implements ActionListener {
 
         if(e.getSource()== button1){
             //TODO Credit Frame wird nicht ausgeblenden und MainMenu mainFrame wird nicht angezeigt.
-            frame.dispose();
-            MainMenu.mainFrame.setVisible(true);
+            //frame.dispose();
+            frame.toBack();
             frame.setVisible(false);
+            MainMenu.mainFrame.setVisible(true);
+            //MainMenu.mainFrame.setState(JFrame.NORMAL);
+            //MainMenu.mainFrame.setVisible(true);
+
         }
     }
 }

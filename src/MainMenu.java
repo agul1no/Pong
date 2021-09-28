@@ -71,6 +71,8 @@ public class MainMenu implements ActionListener {
         if(e.getSource()== button3){
             mainFrame.setVisible(false);
             Credits frame = new Credits();
+            //frame.setVisible(true);
+            frame.toFront();
         }
         if(e.getSource()== button4){
             mainFrame.dispose();

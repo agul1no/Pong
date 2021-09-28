@@ -80,57 +80,57 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
         return Math.toRadians(theta); // convert to radians cause sin function expects radiant
     }
 
-    public void checkCollision(){
+    public void checkCollision() {
         //bounce the ball at the window edges
-        if(ball.y <= 0){
-            ball.setYDirection(-ball.yVelocity);
-        }
-        if(ball.y >= Constans.SCREEN_HEIGHT-Constans.BALL_DIAMETER){
-            ball.setYDirection(-ball.yVelocity);
-        }
-        //bounces ball out of paddles
-        Random random = new Random();
-        int rand = random.nextInt(6);
-        if (ball.xVelocity < 0){
-            if(ball.x < paddle1.x + Constans.PADDLE_WIDTH) {  //we extended the ball class to a rectangle so now the class has the methods of the rectangle class (inheritance)
-                if (ball.y + 20 > paddle1.y && ball.y < paddle1.y + Constans.PADDLE_HEIGHT) {
-                    //ball.xVelocity = -ball.xVelocity;
-                    double theta = calculateNewVelocityAngle();
-                    double newVx = Math.abs((Math.cos(theta)) * -ball.xVelocity);
-                    double newVy = (-Math.sin(theta)) * ball.yVelocity;    // Math.sin expects radiant
+                    if (ball.y <= 0) {
+                        ball.setYDirection(-ball.yVelocity);
+                    }
+                    if (ball.y >= Constans.SCREEN_HEIGHT - Constans.BALL_DIAMETER) {
+                        ball.setYDirection(-ball.yVelocity);
+                    }
+                    //bounces ball out of paddles
+                    Random random = new Random();
+                    int rand = random.nextInt(6);
+                    if (ball.xVelocity < 0) {
+                        if (ball.x < paddle1.x + Constans.PADDLE_WIDTH) {  //we extended the ball class to a rectangle so now the class has the methods of the rectangle class (inheritance)
+                            if (ball.y + 20 > paddle1.y && ball.y < paddle1.y + Constans.PADDLE_HEIGHT) {
+                                //ball.xVelocity = -ball.xVelocity;
+                                double theta = calculateNewVelocityAngle();
+                                double newVx = Math.abs((Math.cos(theta)) * -ball.xVelocity);
+                                double newVy = (-Math.sin(theta)) * ball.yVelocity;    // Math.sin expects radiant
 
-                    //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
-                    ball.xVelocity = newVx * Constans.BALL_VELOCITY;
-                    if(ball.xVelocity > 15)
-                        ball.xVelocity = 15;
-                    if(rand >=3){
-                        rand = 3;
-                    }else
-                        rand = -3;
-                    ball.yVelocity = newVy-rand;
-                }
-            }
-        } else if(ball.xVelocity > 0) {
-            if (ball.x + Constans.BALL_DIAMETER > paddle2.x){
-                if (ball.y + 20 > paddle2.y && ball.y < paddle2.y + Constans.PADDLE_HEIGHT) {
-                    //ball.xVelocity = -ball.xVelocity;
-                    double theta = calculateNewVelocityAngle2();
-                    double newVx = Math.abs((Math.cos(theta)) * -ball.xVelocity);
-                    double newVy = (-Math.sin(theta)) * ball.yVelocity;    // Math.sin expects radiant
+                                //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
+                                ball.xVelocity = newVx * Constans.BALL_VELOCITY;
+                                if (ball.xVelocity > 16)
+                                    ball.xVelocity = 16;
+                                if (rand >= 3) {
+                                    rand = 3;
+                                } else
+                                    rand = -3;
+                                ball.yVelocity = newVy - rand;
+                            }
+                        }
+                    } else if (ball.xVelocity > 0) {
+                        if (ball.x + Constans.BALL_DIAMETER > paddle2.x) {
+                            if (ball.y + 20 > paddle2.y && ball.y < paddle2.y + Constans.PADDLE_HEIGHT) {
+                                //ball.xVelocity = -ball.xVelocity;
+                                double theta = calculateNewVelocityAngle2();
+                                double newVx = Math.abs((Math.cos(theta)) * -ball.xVelocity);
+                                double newVy = (-Math.sin(theta)) * ball.yVelocity;    // Math.sin expects radiant
 
-                    //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
-                    ball.xVelocity = newVx * -Constans.BALL_VELOCITY;
-                    if(ball.xVelocity < -15)
-                        ball.xVelocity = -15;
-                    if(rand >=3){
-                        rand = 3;
-                    }else
-                    rand = -3;
-                    ball.yVelocity = newVy-rand;
+                                //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
+                                ball.xVelocity = newVx * -Constans.BALL_VELOCITY;
+                                if (ball.xVelocity < -16)
+                                    ball.xVelocity = -16;
+                                if (rand >= 3) {
+                                    rand = 3;
+                                } else
+                                    rand = -3;
+                                ball.yVelocity = newVy - rand;
 
-                }
-            }
-        }
+                            }
+                        }
+                    }
 
         // stops paddles at window edges
         if(paddle1.y <= 0){
