@@ -6,6 +6,7 @@ public class Score extends Rectangle{
 
     public static int player1 = 0;
     public static int player2 = 0;
+    public static int playerComputer = 0;
     static int width;
     static int height;
 
@@ -13,9 +14,15 @@ public class Score extends Rectangle{
         Score.width = width;
         Score.height = height;
     }
-    public int startingTheScore(int player2){
-        player2 = 0;
+    public int startingTheScore2(){
+        if(!GamePanelTwoPlayers.condition)
+            player2 = 0;
         return player2;
+    }
+    public int startingTheScore1(){
+        if(!GamePanelTwoPlayers.condition)
+            player1 = 0;
+        return player1;
     }
     public void draw(Graphics g){
         g.setColor(Color.WHITE);

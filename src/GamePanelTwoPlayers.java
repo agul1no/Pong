@@ -32,7 +32,6 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
 
     public void newBall(){
         ball = new Ball( (Constans.SCREEN_WIDTH/2 - Constans.BALL_DIAMETER/2),Constans.SCREEN_HEIGHT/2 - Constans.BALL_DIAMETER/2, Constans.BALL_DIAMETER, Constans.BALL_DIAMETER);
-
     }
     public void newPaddles(){
         paddle1 = new Paddle(0,(Constans.SCREEN_HEIGHT/2)-(Constans.PADDLE_HEIGHT/2),Constans.PADDLE_WIDTH, Constans.PADDLE_HEIGHT, 1);
@@ -172,14 +171,19 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
             System.out.println(condition);
             System.out.println(Score.player1);
             System.out.println(Score.player2);
-            score.startingTheScore(Score.player2);
+            System.out.println(delta);
+            score.startingTheScore1();
+            if(delta>20){
+                Score.player1=0;
+                Score.player2=0;
+            }
             //TODO Score zählt mit obwohl das Spiel Loop nicht angefangen hat
-            if(delta >= 1 && condition && !end){
+            if (delta >= 1 && condition && !end) {
                 move();
                 checkCollision();
                 repaint();
                 delta--;
-            }else{
+            } else {
 
             }
         }
