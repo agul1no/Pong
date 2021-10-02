@@ -57,10 +57,11 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
         }
     }
     public void move(){
-
-        paddle1.move();
-        paddle2.move();
         ball.move();
+    }
+    public void movePaddle(){
+        paddle1.movePaddle();
+        paddle2.movePaddle();
     }
 
     public double calculateNewVelocityAngle() {
@@ -168,23 +169,23 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            System.out.println(condition);
-            System.out.println(Score.player1);
-            System.out.println(Score.player2);
-            System.out.println(delta);
+                                                            //System.out.println(condition);
+                                                            //System.out.println(Score.player1);
+                                                            //System.out.println(Score.player2);
+                                                            //System.out.println(delta);
             score.startingTheScore1();
             if(delta>20){
                 Score.player1=0;
                 Score.player2=0;
             }
-            //TODO Score zählt mit obwohl das Spiel Loop nicht angefangen hat
-            if (delta >= 1 && condition && !end) {
-                move();
+            if (delta >= 0) {
+                if(condition && !end) {
+                    move();
+                }
+                movePaddle();
                 checkCollision();
                 repaint();
                 delta--;
-            } else {
-
             }
         }
     }

@@ -28,6 +28,7 @@ public class Ball extends Rectangle{
     public void keyReleased(KeyEvent e){
         if(e.getKeyCode()==KeyEvent.VK_SPACE) {
             GamePanelTwoPlayers.condition = true;
+            GamePanelUno.condition1 = true;
             Score.player1=0;
             Score.player2=0;
         }

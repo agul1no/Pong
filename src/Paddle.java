@@ -20,21 +20,21 @@ public class Paddle extends Rectangle{
             case 1:
                 if(e.getKeyCode()==KeyEvent.VK_W){               // in the under class AL extends KeyAdapter in the method keyPressed(KeyEvent e)
                     setYDirection(-Constans.PADDLE_VELOCITY);    // we write "object.keyPressed(e)" in the class of the object, here,
-                    move();                                      // we ask for the condition "e.getKeyCode()==KeyEvent.VK_UP_DOWN_S_WHATEVER"
+                    movePaddle();                                      // we ask for the condition "e.getKeyCode()==KeyEvent.VK_UP_DOWN_S_WHATEVER"
                 }
                 if(e.getKeyCode()==KeyEvent.VK_S){
                     setYDirection(Constans.PADDLE_VELOCITY);
-                    move();
+                    movePaddle();
                 }
                 break;
             case 2:
                 if(e.getKeyCode()==KeyEvent.VK_UP){
                     setYDirection(-Constans.PADDLE_VELOCITY);
-                    move();
+                    movePaddle();
                 }
                 if(e.getKeyCode()==KeyEvent.VK_DOWN){
                     setYDirection(Constans.PADDLE_VELOCITY);
-                    move();
+                    movePaddle();
                 }
                 break;
 
@@ -45,21 +45,21 @@ public class Paddle extends Rectangle{
             case 1:
                 if(e.getKeyCode()==KeyEvent.VK_W){      // the same for the keyReleased method
                     setYDirection(0);
-                    move();
+                    movePaddle();
                 }
                 if(e.getKeyCode()==KeyEvent.VK_S){
                     setYDirection(0);
-                    move();
+                    movePaddle();
                 }
                 break;
             case 2:
                 if(e.getKeyCode()==KeyEvent.VK_UP){
                     setYDirection(0);
-                    move();
+                    movePaddle();
                 }
                 if(e.getKeyCode()==KeyEvent.VK_DOWN){
                     setYDirection(0);
-                    move();
+                    movePaddle();
                 }
                 break;
 
@@ -70,7 +70,8 @@ public class Paddle extends Rectangle{
 
         yVelocity = yDirection;
     }
-    public void move (){
+    public void movePaddle (){
+
         y = y + yVelocity;
     }
     public void draw(Graphics g) {
