@@ -3,8 +3,8 @@ import java.awt.*;
 public class PaddleComputer extends Rectangle {
 
     int x, width, height;
-    public static int y;
-    public static int yVelocity;
+    public static double y;
+    public static double yVelocity;
 
     PaddleComputer(int x, int y, int width, int height) {
         this.x = x;
@@ -15,15 +15,18 @@ public class PaddleComputer extends Rectangle {
     }
 
     public static void checkingBall(){
-        if(GamePanelUno.ballComputer.y + 20 < y + 50)
-            setYDirection(-Constans.PADDLE_VELOCITY);
+        if(GamePanelUno.ballComputer.y + 20 <= y + 50) {
+            setYDirection(-Constans.PADDLE_COMPUTER_VELOCITY);
             movePaddle();
-        if(GamePanelUno.ballComputer.y +20 > y + 50)
-            setYDirection(Constans.PADDLE_VELOCITY);
+        } else {
+                setYDirection(Constans.PADDLE_COMPUTER_VELOCITY);
             movePaddle();
+            if(GamePanelUno.ballComputer.y + 20 == y + 50)
+                setYDirection(0);
+        }
     }
 
-    public static void setYDirection (int yDirection){
+    public static void setYDirection (double yDirection){
         yVelocity = yDirection;
     }
     public static void movePaddle(){
@@ -31,6 +34,6 @@ public class PaddleComputer extends Rectangle {
     }
     public void draw (Graphics g){
         g.setColor(Color.MAGENTA);
-        g.fillRect(x,y,width,height);
+        g.fillRect(x,(int)y,width,height);
     }
 }

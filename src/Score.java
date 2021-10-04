@@ -38,6 +38,7 @@ public class Score extends Rectangle{
             g.setFont(new Font("Consolas", Font.PLAIN,70));
             g.drawString("Player 1 won!", 160,250);
             GamePanelTwoPlayers.end = true;
+            GamePanelUno.end1 = true;
             //TODO Wenn das Spiel vorbei ist, fehlt der Button, um wieder zum Main Menu zurückzukommen
         }
         if(player2 >= 11 && player2-player1 > 1){
@@ -45,6 +46,7 @@ public class Score extends Rectangle{
             g.setFont(new Font("Consolas", Font.PLAIN,70));
             g.drawString("Player 2 won!", 160,250);
             GamePanelTwoPlayers.end = true;
+            GamePanelUno.end1 = true;
         }
     }
 }

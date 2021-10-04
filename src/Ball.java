@@ -8,11 +8,11 @@ import javax.swing.*;
 public class Ball extends Rectangle{
     double x, y;
     int width, height;
-    double xIDirection = -1;
+    double xIDirection = -2;
     double yIDirection = 0;
     double xVelocity;
     double yVelocity;
-    double initialSpeed = 3;
+    double initialSpeed = 2;
 
 
     Ball(int x, int y, int width, int height){
