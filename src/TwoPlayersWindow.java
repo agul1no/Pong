@@ -4,7 +4,7 @@ import java.awt.*;
 public class TwoPlayersWindow extends JFrame {    //we can treat our GameFrame as a JFrame
     // The Frame is the frame around the painting. It houses the panel. it contains the min, max und X buttoms
     GamePanelTwoPlayers panel;
-    JFrame frame = new JFrame();
+    public static JFrame frame = new JFrame();
 
     TwoPlayersWindow(){
         panel = new GamePanelTwoPlayers();   //Instantiating the panel in the constructor
@@ -15,6 +15,7 @@ public class TwoPlayersWindow extends JFrame {    //we can treat our GameFrame a
         frame.setResizable(false);
         frame.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setIconImage(MainMenu.image.getImage());
         frame.setVisible(true);
         frame.pack();    // podria abrir la ventana muy pequenia
 

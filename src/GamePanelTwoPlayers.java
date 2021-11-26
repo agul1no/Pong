@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We can treat our GamePanel as a JPanel
     // It is the canvas in where we are painting
-    Thread gameThread;     // Runnable
+    public static Thread gameThread;     // Runnable
     Image image;
     Graphics graphics;
     Paddle paddle1;
@@ -51,9 +51,18 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
         score.draw(g);
 
         if(!condition) {
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Consolas", Font.PLAIN, 48));
-            g.drawString("Press the Space bar to start", 50, 210);
+            if (Ball.i == 0){
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Consolas", Font.PLAIN, 48));
+                g.drawString("Press the Space bar to start", 50, 210);
+            } else if(!Ball.exit) {
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Consolas", Font.PLAIN, 42));
+                g.drawString("Press the Space bar to continue", 50, 110);
+                g.setFont(new Font("Consolas", Font.PLAIN, 40));
+                g.drawString("or", 378, 160);
+                g.drawString("press escape to exit the Game", 92, 210);
+            }
         }
     }
     public void move(){
@@ -101,8 +110,8 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
 
                                 //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
                                 ball.xVelocity = newVx * Constans.BALL_VELOCITY;
-                                if (ball.xVelocity > 16)
-                                    ball.xVelocity = 16;
+                                if (ball.xVelocity > 18)
+                                    ball.xVelocity = 18;
                                 if (rand >= 3) {
                                     rand = 3;
                                 } else
@@ -120,8 +129,8 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
 
                                 //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
                                 ball.xVelocity = newVx * -Constans.BALL_VELOCITY;
-                                if (ball.xVelocity < -16)
-                                    ball.xVelocity = -16;
+                                if (ball.xVelocity < -18)
+                                    ball.xVelocity = -18;
                                 if (rand >= 3) {
                                     rand = 3;
                                 } else
@@ -173,12 +182,7 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
                                                             //System.out.println(Score.player1);
                                                             //System.out.println(Score.player2);
                                                             //System.out.println(delta);
-            score.startingTheScore1();
-            if(delta>20){
-                Score.player1=0;
-                Score.player2=0;
-            }
-            if (delta >= 0) {
+            if (delta >= 1) {
                 if(condition && !end) {
                     move();
                 }

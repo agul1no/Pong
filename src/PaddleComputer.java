@@ -15,15 +15,20 @@ public class PaddleComputer extends Rectangle {
     }
 
     public static void checkingBall(){
-        if(GamePanelUno.ballComputer.y + 20 <= y + 50) {
-            setYDirection(-Constans.PADDLE_COMPUTER_VELOCITY);
-            movePaddle();
-        } else {
+        if(GamePanelUno.condition1){
+            if(GamePanelUno.ballComputer.y + 20 <= y + 50) {
+                setYDirection(-Constans.PADDLE_COMPUTER_VELOCITY);
+                movePaddle();
+              } else {
                 setYDirection(Constans.PADDLE_COMPUTER_VELOCITY);
-            movePaddle();
-            if(GamePanelUno.ballComputer.y + 20 == y + 50)
-                setYDirection(0);
+                movePaddle();
+                if(GamePanelUno.ballComputer.y + 20 == y + 50)
+                    setYDirection(0);
+            }
+        }else {
+            setYDirection(0);
         }
+
     }
 
     public static void setYDirection (double yDirection){

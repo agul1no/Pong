@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class GamePanelUno extends JPanel implements Runnable {
 
-    Thread gameThread1;
+    public static Thread gameThread1;
     Image image1;
     Graphics graphics1;
     Paddle paddle1P;
@@ -50,9 +50,18 @@ public class GamePanelUno extends JPanel implements Runnable {
         score1.draw(g);
 
         if(!condition1) {
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Consolas", Font.PLAIN, 48));
-            g.drawString("Press the Space bar to start", 50, 210);
+            if (Ball.i == 0){
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Consolas", Font.PLAIN, 48));
+                g.drawString("Press the Space bar to start", 50, 210);
+            } else if(!Ball.exit) {
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Consolas", Font.PLAIN, 42));
+                g.drawString("Press the Space bar to continue", 50, 110);
+                g.setFont(new Font("Consolas", Font.PLAIN, 40));
+                g.drawString("or", 378, 160);
+                g.drawString("press escape to exit the Game", 92, 210);
+            }
         }
     }
     public void move(){
@@ -171,15 +180,14 @@ public class GamePanelUno extends JPanel implements Runnable {
             //System.out.println(condition1);
             //System.out.println(Score.player1);
             //System.out.println(Score.player2);
-            score1.startingTheScore2();
-            score1.startingTheScore1();
-            //TODO Score zählt mit obwohl das Spiel Loop nicht angefangen hat
             if(delta >= 1){
                 if(condition1 && !end1) {
                     move();
+                    PaddleComputer.checkingBall();
+                    movePaddle();
                     }
-                PaddleComputer.checkingBall();
-                movePaddle();
+
+
                 checkCollision();
                 repaint();
                 delta--;

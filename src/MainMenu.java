@@ -7,6 +7,8 @@ public class MainMenu implements ActionListener {
 
     public static JFrame mainFrame = new JFrame();
     JTextField pongTitel = new JTextField();
+    public static ImageIcon image = new ImageIcon("pingpong.png"); // creates an image icon
+    public static boolean menu1 = true;
 
     JButton button1 = new JButton("1 Player VS Computer");
     JButton button2 = new JButton("2 Players");
@@ -22,6 +24,7 @@ public class MainMenu implements ActionListener {
         mainFrame.setTitle("Pong - Main Menu");
         mainFrame.setResizable(false);
         mainFrame.setLocationRelativeTo(null);
+        mainFrame.setIconImage(image.getImage()); // change icon of frame
 
         pongTitel.setText("Ultimate Pong");
         pongTitel.setBounds(0,80,800,135);
@@ -62,11 +65,13 @@ public class MainMenu implements ActionListener {
         if(e.getSource()== button1){
             mainFrame.dispose();
             OnePlayerWindow frame = new OnePlayerWindow();
+            menu1 = true;
         }
 
         if(e.getSource()== button2){
             mainFrame.dispose();
             TwoPlayersWindow frame = new TwoPlayersWindow();
+            menu1 = false;
         }
         if(e.getSource()== button3){
             mainFrame.setVisible(false);
@@ -76,6 +81,7 @@ public class MainMenu implements ActionListener {
         }
         if(e.getSource()== button4){
             mainFrame.dispose();
+            System.exit(0);
         }
 
     }

@@ -13,6 +13,8 @@ public class Ball extends Rectangle{
     double xVelocity;
     double yVelocity;
     double initialSpeed = 2;
+    public static int i = 0;
+    public static boolean exit = true;
 
 
     Ball(int x, int y, int width, int height){
@@ -27,10 +29,30 @@ public class Ball extends Rectangle{
 
     public void keyReleased(KeyEvent e){
         if(e.getKeyCode()==KeyEvent.VK_SPACE) {
-            GamePanelTwoPlayers.condition = true;
-            GamePanelUno.condition1 = true;
-            Score.player1=0;
-            Score.player2=0;
+            if(!GamePanelTwoPlayers.condition || !GamePanelUno.condition1) {
+                GamePanelTwoPlayers.condition = true;
+                GamePanelUno.condition1 = true;
+                exit = false;
+                i++;
+            }else{
+                GamePanelUno.condition1 = false;
+                GamePanelTwoPlayers.condition = false;
+            }
+        }
+        if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+            resetScorePlayer1();
+            resetScorePlayer2();
+            //TODO gameThread oder gameThread1 crash at this point cause the threat that is not started cannot be stopped. Create a check for thread startet yes or no
+            if (MainMenu.menu1) {
+                GamePanelUno.gameThread1.stop();
+                OnePlayerWindow.frameUno.dispose();
+                MainMenu.mainFrame.setVisible(true);
+            }else {
+                GamePanelTwoPlayers.gameThread.stop();
+                TwoPlayersWindow.frame.dispose();
+                MainMenu.mainFrame.setVisible(true);
+            }
+
         }
 
     }
@@ -54,6 +76,14 @@ public class Ball extends Rectangle{
     public void draw(Graphics g){
         g.setColor(Color.WHITE);
         g.fillOval((int)x,(int)y,width,height);
+    }
+    public static int resetScorePlayer1(){
+        Score.player1 = 0;
+        return Score.player1;
+    }
+    public static int resetScorePlayer2(){
+        Score.player2 = 0;
+        return Score.player2;
     }
 
 }

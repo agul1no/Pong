@@ -18,6 +18,7 @@ public class Credits extends JFrame implements ActionListener {
         frame.getContentPane().setBackground(Color.BLACK);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Pong - Credits");
+        frame.setIconImage(MainMenu.image.getImage());
 
         textField.setText("About this game");
         textField.setBounds(0,20,800,110);

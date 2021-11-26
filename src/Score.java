@@ -14,16 +14,7 @@ public class Score extends Rectangle{
         Score.width = width;
         Score.height = height;
     }
-    public int startingTheScore2(){
-        if(!GamePanelTwoPlayers.condition)
-            player2 = 0;
-        return player2;
-    }
-    public int startingTheScore1(){
-        if(!GamePanelTwoPlayers.condition)
-            player1 = 0;
-        return player1;
-    }
+
     public void draw(Graphics g){
         g.setColor(Color.WHITE);
         g.setFont(new Font("Consolas", Font.PLAIN,60));

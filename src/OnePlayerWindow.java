@@ -4,7 +4,7 @@ import java.awt.*;
 public class OnePlayerWindow extends JFrame{
 
     GamePanelUno panelUno;
-    JFrame frameUno = new JFrame();
+    public static JFrame frameUno = new JFrame();
 
     OnePlayerWindow(){
         panelUno = new GamePanelUno();
@@ -15,6 +15,7 @@ public class OnePlayerWindow extends JFrame{
         frameUno.setResizable(false);
         frameUno.setBackground(Color.BLACK);
         frameUno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameUno.setIconImage(MainMenu.image.getImage());
         frameUno.setVisible(true);
         frameUno.pack();
     }
