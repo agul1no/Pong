@@ -16,6 +16,7 @@ public class GamePanelUno extends JPanel implements Runnable {
     //static Dimension screenSize = new Dimension(Constans.SCREEN_WIDTH,Constans.SCREEN_HEIGHT);
     public static boolean condition1 = false;
     public static boolean end1 = false;
+    public static int maxSpeed1 = 15;
 
     GamePanelUno(){
         newPaddles();
@@ -109,8 +110,8 @@ public class GamePanelUno extends JPanel implements Runnable {
 
                     //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
                     ballComputer.xVelocity = newVx * Constans.BALL_VELOCITY;
-                    if (ballComputer.xVelocity > 16)
-                        ballComputer.xVelocity = 16;
+                    if (ballComputer.xVelocity > maxSpeed1)
+                        ballComputer.xVelocity = maxSpeed1;
                     if (rand >= 3) {
                         rand = 3;
                     } else
@@ -128,8 +129,8 @@ public class GamePanelUno extends JPanel implements Runnable {
 
                     //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
                     ballComputer.xVelocity = newVx * -Constans.BALL_VELOCITY;
-                    if (ballComputer.xVelocity < -16)
-                        ballComputer.xVelocity = -16;
+                    if (ballComputer.xVelocity < -maxSpeed1)
+                        ballComputer.xVelocity = -maxSpeed1;
                     if (rand >= 3) {
                         rand = 3;
                     } else

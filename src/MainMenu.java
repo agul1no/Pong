@@ -14,8 +14,19 @@ public class MainMenu implements ActionListener {
     JButton button2 = new JButton("2 Players");
     JButton button3 = new JButton("Credits");
     JButton button4 = new JButton("Quit");
+    JRadioButton easy;
+    JRadioButton medium;
+    JRadioButton hard;
+    ButtonGroup bg;
+    JTextField select;
+
 
     MainMenu(){
+
+        easy = new JRadioButton(" easy");
+        medium = new JRadioButton(" medium", true);
+        hard = new JRadioButton(" hard");
+        bg = new ButtonGroup();
 
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(Constans.SCREEN_WIDTH, Constans.SCREEN_HEIGHT);
@@ -27,7 +38,7 @@ public class MainMenu implements ActionListener {
         mainFrame.setIconImage(image.getImage()); // change icon of frame
 
         pongTitel.setText("Ultimate Pong");
-        pongTitel.setBounds(0,80,800,135);
+        pongTitel.setBounds(0,20,800,135);
         pongTitel.setBackground(Color.BLACK);
         pongTitel.setForeground(new Color(255, 255, 255));
         pongTitel.setFont(new Font("MV Boil",Font.BOLD,100));
@@ -35,24 +46,61 @@ public class MainMenu implements ActionListener {
         pongTitel.setHorizontalAlignment(JTextField.CENTER);
         pongTitel.setEditable(false);
 
-        button1.setBounds(300,230,200,50);
+        button1.setBounds(150,230,200,50);
         button1.setFocusable(false);
         button1.addActionListener(this);
-        button2.setBounds(300,300,200,50);
+        button2.setBounds(150,300,200,50);
         button2.setFocusable(false);
         button2.addActionListener(this);
-        button3.setBounds(300,370,200,50);
+        button3.setBounds(150,370,200,50);
         button3.setFocusable(false);
         button3.addActionListener(this);
-        button4.setBounds(300,440,200,50);
+        button4.setBounds(150,440,200,50);
         button4.setFocusable(false);
         button4.addActionListener(this);
+
+        easy.setBounds(500,250,100,50);
+        easy.setBackground(Color.BLACK);
+        easy.setForeground(Color.WHITE);
+        easy.setFont(new Font("Time new roman",Font.PLAIN,30));
+        easy.setFocusable(false);
+        easy.addActionListener(this);
+
+        medium.setBounds(500,300,150,50);
+        medium.setBackground(Color.BLACK);
+        medium.setForeground(Color.WHITE);
+        medium.setFont(new Font("Time new roman",Font.PLAIN,30));
+        medium.setFocusable(false);
+        medium.addActionListener(this);
+
+        hard.setBounds(500,350,100,50);
+        hard.setBackground(Color.BLACK);
+        hard.setForeground(Color.WHITE);
+        hard.setFont(new Font("Time new roman",Font.PLAIN,30));
+        hard.setFocusable(false);
+        hard.addActionListener(this);
+
+        select = new JTextField();
+        select.setText("Select the Level of difficulty:");
+        select.setBounds(400,155,350,100);
+        select.setBackground(Color.BLACK);
+        select.setForeground(Color.WHITE);
+        select.setFont(new Font("Time new roman",Font.PLAIN,28));
+        select.setEditable(false);
+        select.setBorder(BorderFactory.createBevelBorder(1));
 
         mainFrame.add(pongTitel);
         mainFrame.add(button1);
         mainFrame.add(button2);
         mainFrame.add(button3);
         mainFrame.add(button4);
+        mainFrame.add(easy);
+        mainFrame.add(medium);
+        mainFrame.add(hard);
+        mainFrame.add(select);
+        bg.add(easy);
+        bg.add(medium);
+        bg.add(hard);
 
 
         mainFrame.setVisible(true);
@@ -82,6 +130,19 @@ public class MainMenu implements ActionListener {
         if(e.getSource()== button4){
             mainFrame.dispose();
             System.exit(0);
+        }
+
+        if(e.getSource() == easy){
+            GamePanelUno.maxSpeed1 = 10;
+            GamePanelTwoPlayers.maxSpeed2 = 10;
+        }
+        if(e.getSource() == medium){
+            GamePanelUno.maxSpeed1 = 15;
+            GamePanelTwoPlayers.maxSpeed2 = 15;
+        }
+        if(e.getSource() == hard){
+            GamePanelUno.maxSpeed1 = 20;
+            GamePanelTwoPlayers.maxSpeed2 = 20;
         }
 
     }

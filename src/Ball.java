@@ -10,8 +10,8 @@ public class Ball extends Rectangle{
     int width, height;
     double xIDirection = -2;
     double yIDirection = 0;
-    double xVelocity;
-    double yVelocity;
+    public static double xVelocity;
+    public static double yVelocity;
     double initialSpeed = 2;
     public static int i = 0;
     public static boolean exit = true;
@@ -42,7 +42,7 @@ public class Ball extends Rectangle{
         if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
             resetScorePlayer1();
             resetScorePlayer2();
-            //TODO gameThread oder gameThread1 crash at this point cause the threat that is not started cannot be stopped. Create a check for thread startet yes or no
+
             if (MainMenu.menu1) {
                 GamePanelUno.gameThread1.stop();
                 OnePlayerWindow.frameUno.dispose();

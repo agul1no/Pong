@@ -16,6 +16,7 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
     Score score;
     public static boolean condition = false;
     public static boolean end = false;
+    public static int maxSpeed2 = 15;
 
     GamePanelTwoPlayers(){              // when we construct our game panel we want to create new paddles
         newPaddles();         // create new ball
@@ -104,14 +105,16 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
                         if (ball.x < paddle1.x + Constans.PADDLE_WIDTH) {  //we extended the ball class to a rectangle so now the class has the methods of the rectangle class (inheritance)
                             if (ball.y + 20 > paddle1.y && ball.y < paddle1.y + Constans.PADDLE_HEIGHT) {
                                 //ball.xVelocity = -ball.xVelocity;
+                                //ToDo repair the angle Problem
                                 double theta = calculateNewVelocityAngle();
-                                double newVx = Math.abs((Math.cos(theta)) * -ball.xVelocity);
-                                double newVy = (-Math.sin(theta)) * ball.yVelocity;    // Math.sin expects radiant
+                                double newVx = Math.abs((Math.cos(theta)) * -Ball.xVelocity);
+                                double newVy = (-Math.sin(theta)) * Ball.yVelocity;    // Math.sin expects radiant
 
-                                //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
-                                ball.xVelocity = newVx * Constans.BALL_VELOCITY;
-                                if (ball.xVelocity > 18)
-                                    ball.xVelocity = 18;
+                                double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
+                                Ball.xVelocity = newVx * Constans.BALL_VELOCITY;
+                                Ball.yVelocity = newVy * Constans.BALL_VELOCITY;
+                                if (Ball.xVelocity > maxSpeed2)
+                                    Ball.xVelocity = maxSpeed2;
                                 if (rand >= 3) {
                                     rand = 3;
                                 } else
@@ -129,8 +132,8 @@ public class GamePanelTwoPlayers extends JPanel implements Runnable {    // We c
 
                                 //double oldSing = Math.signum(ball.xVelocity); //give the sign of vx. Positive or negative
                                 ball.xVelocity = newVx * -Constans.BALL_VELOCITY;
-                                if (ball.xVelocity < -18)
-                                    ball.xVelocity = -18;
+                                if (ball.xVelocity < -maxSpeed2)
+                                    ball.xVelocity = -maxSpeed2;
                                 if (rand >= 3) {
                                     rand = 3;
                                 } else

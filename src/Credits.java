@@ -67,6 +67,7 @@ public class Credits extends JFrame implements ActionListener {
             frame.toBack();
             frame.setVisible(false);
             MainMenu.mainFrame.setVisible(true);
+            MainMenu.mainFrame.toFront();
             //MainMenu.mainFrame.setState(JFrame.NORMAL);
             //MainMenu.mainFrame.setVisible(true);
 
